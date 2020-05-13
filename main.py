@@ -1,16 +1,16 @@
 import pygame
 from player import Player
 
-WIDTH = 1400
-HEIGHT = 800
+width = 1400
+height = 800
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Spaceship")
 
 BACKGROUND = pygame.image.load('assets/bg.jpg')  # load background
 
 # create the player
-player = Player(WIDTH, HEIGHT)
+player = Player(width, height)
 
 keys_down = {}
 

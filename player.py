@@ -3,16 +3,14 @@
 """
 import pygame
 
-# from main import WIDTH, HEIGHT
-
 
 class Player(object):
 
-    def __init__(self, WIDTH, HEIGHT):
+    def __init__(self, width, height):
         super().__init__()
         self.image = pygame.image.load('assets/transportation.png')
-        self.WIDTH = WIDTH
-        self.HEIGHT = HEIGHT
+        self.width = width
+        self.height = height
         self.speed = 15
         self.health = 1000
         self.max_health = 1000

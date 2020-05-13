@@ -3,6 +3,7 @@
 """
 import pygame
 
+
 class Player(object):
 
     def __init__(self):
@@ -15,3 +16,15 @@ class Player(object):
         self.rect = self.image.get_rect()
         self.rect.x = 700
         self.rect.y = 400
+
+    def move_right(self):
+        self.rect.x += self.speed
+
+    def move_left(self):
+        self.rect.x -= self.speed
+
+    def move_up(self):
+        self.rect.y -= self.speed
+
+    def move_down(self):
+        self.rect.y += self.speed

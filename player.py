@@ -6,8 +6,9 @@ from p_projectile import PlayerProjectile
 
 class Player(object):
 
-    def __init__(self, width, height):
+    def __init__(self, width, height, game):
         super().__init__()
+        self.game = game
         self.image = pygame.image.load('assets/transportation.png')
         self.width = width
         self.height = height

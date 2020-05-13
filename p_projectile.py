@@ -4,14 +4,16 @@
 import pygame
 
 
-class PlayerProjectile(object):
+class PlayerProjectile(pygame.sprite.Sprite):
 
     def __init__(self, player):
         super().__init__()
         self.player = player
-        self.rect = self.image.get_rect()
         self.attack = 150
         self.image = pygame.image.load('assets/shot6_1.png')
+        self.rect = self.image.get_rect()
+        self.rect.x = player.rect.x + 100
+        self.rect.y = player.rect.y + 20
         self.velocity = 20
 
     def remove(self):

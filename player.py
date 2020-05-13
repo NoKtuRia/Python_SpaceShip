@@ -2,7 +2,7 @@
     Define the Player class
 """
 import pygame
-
+from p_projectile import PlayerProjectile
 
 class Player(object):
 
@@ -14,13 +14,13 @@ class Player(object):
         self.speed = 15
         self.health = 1000
         self.max_health = 1000
-        self.attack = 150
+        self.all_p_projectiles = pygame.sprite.Group()
         self.rect = self.image.get_rect()
         self.rect.x = 700
         self.rect.y = 400
 
     def move_right(self):
-        if self.rect.x + self.image.get_width() < self.WIDTH:
+        if self.rect.x + self.image.get_width() < self.width:
             self.rect.x += self.speed
 
     def move_left(self):
@@ -32,5 +32,8 @@ class Player(object):
             self.rect.y -= self.speed
 
     def move_down(self):
-        if self.rect.y + self.image.get_height() < self.HEIGHT:
+        if self.rect.y + self.image.get_height() < self.height:
             self.rect.y += self.speed
+
+    def launch_projectile(self):
+        self.all_p_projectiles.add(PlayerProjectile(self))

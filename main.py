@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from game import  Game
 
 width = 1400
 height = 800
@@ -12,6 +13,8 @@ BACKGROUND = pygame.image.load('assets/bg.jpg')  # load background
 # create the player
 player = Player(width, height)
 
+game = Game()
+
 keys_down = {}
 
 running = True
@@ -19,7 +22,9 @@ running = True
 while running:
 
     screen.blit(BACKGROUND, (0, 0))
-    screen.blit(player.image, player.rect)
+
+    if game.is_playing:
+        game.update(screen)
 
     # Player move
     if keys_down.get(pygame.K_LEFT):

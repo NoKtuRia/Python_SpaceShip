@@ -2,6 +2,7 @@ import pygame
 import os
 import random
 import time
+
 pygame.font.init()
 pygame.init()
 
@@ -29,10 +30,23 @@ YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"
 # BACKGROUND
 BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
 
+
 class Ship:
-    def __init__(self, x, y, color, health=100):
+    def __init__(self, x, y, health=100):
         self.x = x
         self.y = y
+        self.health = health
+        self.ship_img = None
+        self.laser_img = None
+        self.lasers = []
+        self.cool_down_counter = 0
+
+    def draw(self, window):
+        window.blit(self.ship_img, (self.x, self.y))
+
+
+class Player(Ship):
+
 
 def main():
     run = True
@@ -40,6 +54,10 @@ def main():
     level = 1
     lives = 5
     main_font = pygame.font.SysFont("comicsans", 50)
+
+    player_vel = 5
+
+    ship = Ship(300, 650)
 
     clock = pygame.time.Clock()
 
@@ -53,6 +71,8 @@ def main():
         WINDOW.blit(lives_label, (10, 10))
         WINDOW.blit(level_label, (WIDTH - level_label.get_width() - 10, 10))
 
+        ship.draw(WINDOW)
+
         pygame.display.update()
 
     while run:
@@ -62,6 +82,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_q] and ship.x - player_vel > 0:  # q for left
+            ship.x -= player_vel
+        if keys[pygame.K_d] and ship.x + player_vel + 50 < WIDTH:
+            ship.x += player_vel  # d for right
+        if keys[pygame.K_z] and ship.y - player_vel > 0:
+            ship.y -= player_vel  # z for up
+        if keys[pygame.K_s] and ship.y + player_vel + 50 < HEIGHT:
+            ship.y += player_vel  # s for down
 
 
 main()
